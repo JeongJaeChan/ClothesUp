@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+    <mapper namespace="kr.ac.cu.faq">
+    	<resultMap type="faq" id="FaqResultMap">
+			<result column="fnum" property="fnum"/>
+			<result column="fcategory" property="fcategory"/>
+			<result column="title" property="title"/>
+			<result column="content" property="content"/>
+			<result column="reg_date" property="reg_date"/>
+		</resultMap>
+	
+<!-- 	 <select id="loginCheck" parameterType="Member" resultMap="MemberResultMap"> -->
+<!--     <![CDATA[ -->
+<!--     select * -->
+<!--     from member -->
+<!--     where id=#{id} AND password=#{password} -->
+<!--     ]]> -->
+<!--     </select> -->
+    
+	<select id="selectFaq"  resultMap="FaqResultMap">
+    <![CDATA[
+    select fnum, fcategory, title, content, reg_date
+    from faq
+   
+    ]]>
+    </select>
+	
+    <insert id="addFaq" parameterType="faq">
+    insert into faq (fnum, fcategory, title, content, reg_date) 
+    values(seq_fnum.NEXTVAL,#{fcategory},#{title},#{content},sysdate)
+    </insert>
+    
+    <update id="updateFaq" parameterType="faq">
+    update faq
+    set fcategory=#{fcategory}
+		,title = #{title}
+		,content =#{content}
+    where fnum=#{fnum}
+    </update>
+    
+    <delete id="deleteFaq" parameterType="faq">
+    delete 
+ 	from faq
+    where fnum=#{fnum}
+    </delete>
+    
+   
+    </mapper>

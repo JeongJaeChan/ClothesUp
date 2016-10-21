@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="kr.ac.cu.goods">
+    	<resultMap type="goods" id="goodsResultMap">
+			<result column="gnum" property="gnum"/>
+			<result column="gname" property="gname"/>
+			<result column="gcnum" property="gcnum"/>
+			<result column="snum" property="snum"/>
+			<result column="ginum" property="ginum"/>
+		</resultMap>
+	
+	<select id="selectgoods"  resultMap="goodsResultMap">
+    <![CDATA[
+    select *
+    from goods
+    where gnum = #{gnum}
+    ]]>
+    </select>
+    
+    <select id="checkgoods"  resultMap="goodsResultMap">
+    <![CDATA[
+    select *
+    from goods
+    where gname = #{gname} and gcnum = #{gcnum} and snum = #{snum}
+    ]]>
+    </select>
+    
+    <select id="selectgoods2"  resultMap="goodsResultMap">
+    <![CDATA[
+    select *
+    from goods
+    where gname = #{gname} and gcnum = #{gcnum} and snum = #{snum}
+    ]]>
+    </select>
+	
+	
+    <insert id="insertgoods" parameterType="goods">
+       <![CDATA[
+    insert into goods (gnum,gname,gcnum,snum,ginum) 
+    values(seq_gnum.NEXTVAL,#{gname},#{gcnum},#{snum},seq_ginum.NEXTVAL)
+    ]]>
+    </insert>
+    
+    <update id="updategoods" parameterType="goods">
+    <![CDATA[
+    update goods
+    set gname=#{gname}, gcnum=#{gcnum}
+    where gnum=#{gnum}
+    ]]>
+    </update>
+    
+    <delete id="deletegoods" parameterType="goods">
+    <![CDATA[
+    delete 
+ 	from goods
+    where gnum=#{gnum}
+    ]]>
+    </delete>
+    
+    <select id="goodslist" resultMap="goodsResultMap">
+	<![CDATA[
+		select * 
+		from goods
+		where snum=#{snum}
+	]]>
+	</select>
+    
+   
+    </mapper>

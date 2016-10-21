@@ -1,0 +1,140 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Modern Business - Start Bootstrap Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="resources/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="resources/css/modern-business.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+    <script>
+    function checkIt()
+    {
+    	if(document.joinput.pid.value == "")
+    		alert("아이디를 입력하세요");
+    	else if(document.joinput.pname.value=="")
+    		alert("이름을 입력하세요");
+    	else if(document.joinput.ppassword.value=="")
+    		alert("비밀번호를 입력하세요");
+    	else if(document.joinput.latitude.value=="")
+    		alert("위도를 입력하세요");
+    	else if(document.joinput.longitude.value=="")
+    		alert("경도를 입력하세요");
+    }
+    function openConfirmid(inputid)
+    {
+//     	boolean check = request.getAttribute("chekId");
+//     	System.out.println("id : "+inputid);
+//     	System.out.println("check : ");
+    	
+//     	if(check == false) {
+//     		alert("아이디를 확인하세요");
+//     		return;
+//     	} 
+//     	url = "checkIdFrom?pid="+inputid.pid.value;
+    	
+    	window.open("checkIdForm?pid="+inputid, 'CheckId', "width=450,height=100");
+    	
+    }
+    </script>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <%@include file="header.jsp" %>
+
+      <article class="container">
+        <div class="page-header">
+          <h1>회원가입 <small>Clothes Up</small></h1>
+        </div>
+        <div class="col-md-6 col-md-offset-3">
+          <form action="perJoin" method="post" name="joinput" onsubmit="return checkIt()">
+         	<div class="form-group">
+              <label><input type="radio" id="ptype" name="ptype" value="1" placeholder="타입을 입력해주세요">일반회원</label> &nbsp;&nbsp;
+              <label><input type="radio" id="ptype" name="ptype" value="2" placeholder="타입을 입력해주세요">관리자</label>
+           	</div>
+            <div class="form-group">
+              <label for="InputId">아이디</label>
+              <div class="input-group">
+             	 <input type="text" class="form-control" id="pid" name="pid" placeholder="아이디를 입력해주세요" >
+             	 <span class="input-group-btn">
+                 	 <input type="button" class="btn btn-success" 
+                 	 name="confirm_id" value="중복확인" onclick="openConfirmid(this.form.pid.value)"/>
+            	  </span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="username">이름</label>
+              <input type="text" class="form-control" id="pname" name="pname" placeholder="이름을 입력해 주세요">
+            </div>
+            <div class="form-group">
+              <label for="InputPassword1">비밀번호</label>
+              <input type="password" class="form-control" id="ppassword" name="ppassword" placeholder="비밀번호">
+            </div>
+            <div class="form-group">
+              <label for="InputPassword2">비밀번호 확인</label>
+              <input type="password" class="form-control"placeholder="비밀번호 확인">
+              <p class="help-block">비밀번호 확인을 위해 다시한번 입력 해 주세요</p>
+            </div>
+<!--             <div class="form-group"> -->
+<!--               <label for="InputPassword2">매장 번호</label> -->
+<!--               <input type="password" class="form-control" id="shopnum" placeholder="매장 번호를 입력해주세요"> -->
+<!--             </div> -->
+<!--             <div class="form-group"> -->
+<!--               <label for="username">위도</label> -->
+<!--               <div class="input-group"> -->
+<!--                 <input type="text" class="form-control" id="latitude" name="latitude" placeholder="위도를 입력해주세요"> -->
+<!--                 <span class="input-group-btn"> -->
+<!--                   <button class="btn btn-success">위도 찾기<i class="fa fa-mail-forward spaceLeft"></i></button> -->
+<!--                 </span> -->
+<!--               </div> -->
+<!--             </div> -->
+<!--             <div class="form-group"> -->
+<!--               <label for="username">경도</label> -->
+<!--               <div class="input-group"> -->
+<!--                 <input type="text" class="form-control" id="longitude" name="longitude" placeholder="경도를 입력해주세요"> -->
+<!--                 <span class="input-group-btn"> -->
+<!--                   <button class="btn btn-success">경도 찾기<i class="fa fa-edit spaceLeft"></i></button> -->
+<!--                 </span> -->
+<!--               </div> -->
+<!--             </div> -->
+            <div class="form-group">
+                <label>약관 동의</label>
+              <div data-toggle="buttons">
+              <label class="btn btn-info">
+                  <span class="fa fa-check"></span>
+                  <input id="agree" type="checkbox" autocomplete="off" checked>
+              </label>
+              <a href="#">이용약관</a>에 동의합니다.
+              </div>
+            </div>
+            <div class="form-group text-center">
+              <button type="submit" class="btn btn-info">회원가입<i class="fa fa-check spaceLeft"></i></button>
+              <button type="reset" class="btn btn-warning">가입취소<i class="fa fa-times spaceLeft"></i></button>
+            </div>
+          </form>
+        </div>
+      </article>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.ac.cu.Board">
+	
+	<resultMap type="Board" id="BoardResultMap">
+		<result column="snum" property="snum"/>
+		<result column="boardnum" property="boardnum"/>
+		<result column="score" property="score"/>
+		<result column="btitle" property="btitle"/>
+		<result column="bcontent" property="bcontent"/>
+		<result column="password" property="password"/>
+		<result column="pid" property="pid"/>
+		<result column="reg_date" property="reg_date"/>	
+	</resultMap>
+	
+	<insert id="addBoard" parameterType="Board">
+	<![CDATA[
+	insert into board(snum, boardnum, score, btitle, bcontent, pid, reg_date)
+	values(#{snum},board_seq.nextval, #{score}, #{btitle}, #{bcontent}, #{pid}, sysdate)
+	]]>
+	</insert>
+	
+	<update id="updateBoard" parameterType="Board">
+	<![CDATA[
+	update board set
+	snum=#{snum}, score=#{score}, btitle=#{btitle}, bcontent=#{bcontent}, pid=#{pid}, reg_date=sysdate
+	where boardnum=#{boardnum}
+	]]>
+	</update>
+	
+	<delete id="deleteBoard">
+	<![CDATA[
+	delete from board where boardnum=#{boardnum}
+	]]>
+	</delete>
+	
+	<select id="selectBoard" resultMap="BoardResultMap">
+	<![CDATA[
+	select * from board where boardnum=#{boardnum}
+	]]>
+	</select>
+	
+	<select id="boardlist" resultMap="BoardResultMap">
+	<![CDATA[
+	select * from board where snum=#{snum}
+	]]>
+	</select>
+	
+	<select id="averagescore" parameterType="int" resultType="double">
+	<![CDATA[
+	select round(avg(score),2) from board where snum=#{snum}
+	]]>
+	</select>
+	
+	<select id="shop_countBoard" parameterType="int" resultType="int">
+	<![CDATA[
+	select count(*) from board where snum=#{snum}
+	]]>
+	</select>
+	
+	
+	<select id="countBoard" resultType="int">
+	<![CDATA[
+	select count(*) from board
+	]]>
+	</select>
+	
+	<delete id="emptyBoard">
+	<![CDATA[
+	delete from board where snum=#{snum}
+	]]>
+	</delete>
+	
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration 
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<typeAliases>
+		<typeAlias type="kr.ac.cu.vo.FaqVO" alias="faq" />
+		<typeAlias type="kr.ac.cu.vo.ShopVO" alias="Shop" />
+		<typeAlias type="kr.ac.cu.vo.BoardVO" alias="Board" />
+		<typeAlias type="kr.ac.cu.vo.PersonVO" alias="person" />
+		<typeAlias type="kr.ac.cu.vo.FavoriteVO" alias="favorite" />
+		<typeAlias type="kr.ac.cu.vo.GoodsVO" alias="goods" />
+		<typeAlias type="kr.ac.cu.vo.GoodsCategoryVO" alias="goodsCategory" />
+		<typeAlias type="kr.ac.cu.vo.GoodsInfoVO" alias="goodsInfo" />
+	</typeAliases>
+
+	<mappers>
+		<mapper resource="kr/ac/cu/dao/FaqMapper.xml" />
+		<mapper resource="kr/ac/cu/dao/ShopMapper.xml" />
+		<mapper resource="kr/ac/cu/dao/BoardMapper.xml" />
+		<mapper resource="kr/ac/cu/dao/PersonMapper.xml" />
+		<mapper resource="kr/ac/cu/dao/FavoriteMapper.xml" />
+		<mapper resource="kr/ac/cu/dao/GoodsMapper.xml" />
+		<mapper resource="kr/ac/cu/dao/GoodsCategoryMapper.xml" />
+		<mapper resource="kr/ac/cu/dao/GoodsInfoMapper.xml" />
+	</mappers>
+
+</configuration>

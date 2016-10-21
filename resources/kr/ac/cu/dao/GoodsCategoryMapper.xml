@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="kr.ac.cu.goodsCategory">
+    	<resultMap type="goodsCategory" id="goodsCategoryResultMap">
+			<result column="gcnum" property="gcnum"/>
+			<result column="gccategory" property="gccategory"/>
+		</resultMap>
+	
+	<select id="selectgoodsCategory"  resultMap="goodsCategoryResultMap">
+    <![CDATA[
+    select *
+    from goods_Category
+    ]]>
+    </select>
+	
+	
+    <insert id="insertgoodsCategory" parameterType="goodsCategory">
+       <![CDATA[
+    insert into goods_Category(gcnum,gccategory) 
+    values(#{gcnum},#{gccategory})
+    ]]>
+    </insert>
+    
+    <update id="updategoodsCategory" parameterType="goodsCategory">
+    <![CDATA[
+    update goods_Category
+    set gccategory=#{gccategory}
+    where gcnum=#{gcnum}
+    ]]>
+    </update>
+    
+    <delete id="deletegoodsCategory" parameterType="goodsCategory">
+    <![CDATA[
+    delete 
+ 	from goods_Category
+    where gcnum=#{gcnum}
+    ]]>
+    </delete>
+    
+   
+    </mapper>
+

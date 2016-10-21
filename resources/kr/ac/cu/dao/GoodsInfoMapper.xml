@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.ac.cu.goodsInfo">
+	<resultMap type="goodsInfo" id="goodsInfoResultMap">
+		<result column="ginum" property="ginum" />
+		<result column="gnum" property="gnum" />
+		<result column="gname" property="gname" />
+		<result column="gimage" property="gimage" />
+		<result column="gprice" property="gprice" />
+		<result column="gsize" property="gsize" />
+		<result column="quantity" property="quantity" />
+	</resultMap>
+
+	<select id="selectgoodsInfo" resultMap="goodsInfoResultMap">
+    <![CDATA[
+    select *
+    from goods_info
+    where gnum=#{gnum}
+    ]]>
+	</select>
+
+
+	<insert id="insertgoodsInfo" parameterType="goodsInfo">
+       <![CDATA[
+    insert into goods_info (ginum,gnum,gname,gimage,gprice,gsize,quantity) 
+    values(#{ginum},#{gnum},#{gname},#{gimage},#{gprice},#{gsize},#{quantity})
+    ]]>
+	</insert>
+
+	<update id="updategoodsInfo" parameterType="goodsInfo">
+    <![CDATA[
+    update goods_info
+    set ginum=#{ginum}
+		,gnum = #{gnum}
+		,gname =#{gname}
+		,gimage =#{gimage}
+		,gprice =#{gprice}
+		,gsize =#{gsize}
+		,quantity =#{quantity}
+    where ginum=#{ginum}
+    ]]>
+	</update>
+
+	<delete id="deletegoodsInfo" parameterType="goodsInfo">
+    <![CDATA[
+    delete 
+ 	from goods_info
+    where ginum=#{ginum}
+    ]]>
+	</delete>
+
+
+</mapper>

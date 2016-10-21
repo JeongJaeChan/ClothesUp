@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.ac.cu.Favorite">
+
+	<resultMap type="Favorite" id="FavoriteResultMap">
+		<result column="fid" property="fid" />
+		<result column="favoritenum" property="favoritenum" />
+		<result column="snum" property="snum" />
+		<result column="section" property="section" />
+		<result column="sectionnum" property="sectionnum" />
+		<result column="sname" property="sname" />
+	</resultMap>
+
+	<select id="listFavorite" parameterType="java.lang.Object"
+		resultMap="FavoriteResultMap">
+	<![CDATA[
+		select
+		f.fid as fid,
+		f.favoritenum as favoritenum,
+		f.shop_num as shop_num,
+		s.sname as sname
+		from Favorite f inner join shop s on f.shop_num=s.snum
+		where fid = #{fid}
+	]]>
+	</select>
+
+	<select id="selectFavorite" resultMap="FavoriteResultMap">
+    	<![CDATA[
+    	select *
+    	from Favorite
+    	where shop_num = #{shop_num} and fid = #{fid}
+    	]]>
+	</select>
+
+	<delete id="deleteFavorite" parameterType="Favorite">
+	<![CDATA[
+		delete from Favorite
+		where favoritenum = #{favoritenum}
+	]]>
+	</delete>
+
+	<update id="updateFavorite" parameterType="Favorite">
+	<![CDATA[
+		update Favorite
+		set favoritenum = #{favoritenum},
+		shop_num = #{shop_num}
+		where fid = #{fid}
+	]]>
+	</update>
+
+	<insert id="addFavorite" parameterType="Favorite">
+	<![CDATA[
+		insert into Favorite(fid,favoritenum,shop_num)
+		values(#{fid},seq_favnum.NEXTVAL,#{shop_num})
+		]]>
+	</insert>
+
+</mapper> 

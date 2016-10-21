@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.ac.cu.Shop">
+
+   <resultMap type="Shop" id="ShopResultMap">
+      <result column="snum" property="snum" />
+      <result column="sname" property="sname" />
+      <result column="phone" property="phone" />
+      <result column="simage" property="simage" />
+      <result column="scategory" property="scategory" />
+      <result column="section" property="section" />
+      <result column="sectionnum" property="sectionnum" />
+      <result column="intro" property="intro" />
+      <result column="pid" property="pid" />
+      <result column="startrow" property="startrow" />
+      <result column="endrow" property="endrow" />
+      <result column="slike" property="slike" />
+      <result column="x1" property="x1"/>
+      <result column="y1" property="y1"/>
+      <result column="x2" property="x2"/>
+      <result column="y2" property="y2"/>
+      <result column="hits" property="hits"/>
+      <result column="score" property="score"/>
+      <result column="gcnum" property="gcnum"/>
+      <result column="gccategory" property="gccategory"/>
+   </resultMap>
+
+<update id="addShop" parameterType="hashmap">
+   <![CDATA[
+   update shop set
+   sname=#{sname}, phone=#{phone}, simage=#{simage},pid=#{pid}, scategory=#{scategory}, intro=#{intro}
+   where section=#{section} and sectionnum=#{sectionnum} 
+   ]]>
+   </update>
+
+   <update id="updateShop" parameterType="Shop">
+   <![CDATA[
+   update shop set
+   sname=#{sname}, phone=#{phone}, simage=#{simage}, scategory=#{scategory}, intro=#{intro}
+   where snum=#{snum}
+   ]]>
+   </update>
+   
+   <update id="updateShopLike" parameterType="Shop">
+   <![CDATA[
+   update shop 
+   set slike= 1+slike
+   where snum=#{snum}
+   ]]>
+   </update>
+   
+   <update id="updateShopHits" parameterType="Shop">
+   <![CDATA[
+   update shop 
+   set hits= hits + 1
+   where snum=#{snum}
+   ]]>
+   </update>
+   
+   
+   <select id="selectShop" resultMap="ShopResultMap">
+   <![CDATA[
+   select 
+s.snum as snum, 
+s.sname as sname, 
+s.phone as phone, 
+s.score as score,
+s.simage as simage, 
+s.scategory as scategory, 
+s.section as section,
+s.sectionnum as sectionnum,
+s.intro as intro, 
+s.x1 as x1, 
+s.y1 as y1,
+s.pid as pid,
+s.x2 as x2, 
+s.y2 as y2, 
+g.gccategory as gccategory
+from shop s inner join goods_category g on s.scategory=g.gcnum where snum=#{snum}
+   ]]>
+   </select>
+
+   
+   <select id="shoplist" resultMap="ShopResultMap">
+      <![CDATA[
+select 
+s.snum as snum, 
+s.sname as sname, 
+s.phone as phone, 
+s.simage as simage, 
+s.scategory as scategory, 
+s.section as section,
+s.sectionnum as sectionnum,
+s.intro as intro, 
+s.x1 as x1, 
+s.y1 as y1,
+s.x2 as x2, 
+s.y2 as y2, 
+s.score as score,
+s.slike as slike,
+s.hits as hits,
+s.pid as pid,
+g.gccategory as gccategory
+from shop s inner join goods_category g on s.scategory=g.gcnum
+]]>
+   </select>
+   <select id="nameSearch" resultMap="ShopResultMap">
+   <![CDATA[
+   select * from shop where sname=#{sname}
+   ]]>
+   </select>
+   
+   
+   <select id="categorySearch" resultMap="ShopResultMap">
+   <![CDATA[
+   select * from shop where scategory=#{scategory}
+   ]]>
+   </select>
+   
+   <select id="countShop" resultType="int">
+   <![CDATA[
+   select count(*) from shop
+   ]]>
+   </select>
+   
+   <select id="pagingShop" parameterType="Shop" resultMap="ShopResultMap">
+   <![CDATA[
+   select * from shop where snum>=#{startrow} and snum<=#{endrow}
+   ]]>
+   </select>
+   
+   
+   
+   <select id="selectCategoryShop" resultMap="ShopResultMap">
+   <![CDATA[
+   select 
+s.snum as snum, 
+s.sname as sname, 
+s.phone as phone, 
+s.simage as simage, 
+s.score as score,
+s.scategory as scategory, 
+s.section as section,
+s.sectionnum as sectionnum,
+s.intro as intro, 
+s.x1 as x1, 
+s.y1 as y1,
+s.x2 as x2, 
+s.y2 as y2, 
+g.gccategory as gccategory
+from shop s inner join goods_category g on s.scategory=g.gcnum
+ where scategory=#{scategory}
+   ]]>
+   </select>
+   
+   
+   <select id="selectnameShop" parameterType="java.lang.String" resultMap="ShopResultMap">
+      <![CDATA[
+   select 
+s.snum as snum, 
+s.sname as sname, 
+s.phone as phone, 
+s.simage as simage, 
+s.score as score,
+s.scategory as scategory, 
+s.section as section,
+s.sectionnum as sectionnum,
+s.intro as intro, 
+s.x1 as x1, 
+s.y1 as y1,
+s.x2 as x2, 
+s.y2 as y2, 
+s.hits as hits,
+s.slike as slike,
+g.gccategory as gccategory
+from shop s inner join goods_category g on s.scategory=g.gcnum
+ where sname like '%'||#{sname}||'%'
+
+   ]]>
+   </select>
+   
+   <select id="m_countShop" parameterType="int" resultType="int">
+   <![CDATA[
+   select count(*) from shop where snum>=#{pg} and snum<=#{pg}+3
+   ]]>
+   </select>
+   
+   
+   
+   <update id="updatescore" parameterType="hashmap">
+   <![CDATA[
+   update shop set
+   score=#{score}
+   where snum=#{snum} 
+   ]]>
+   </update>
+
+   
+   <update id="emptyShop" parameterType="int">
+   <![CDATA[
+   update shop set
+   sname='', phone='', simage='', scategory='', intro='', pid='', startrow='', endrow='', slike=0, score=0, hits=0
+   where snum=#{snum}
+   ]]>
+   </update>
+   
+   <select id="myshoplist" resultMap="ShopResultMap">
+   <![CDATA[
+      select    
+s.snum as snum, 
+s.sname as sname, 
+s.phone as phone, 
+s.simage as simage, 
+s.score as score,
+s.scategory as scategory, 
+s.section as section,
+s.sectionnum as sectionnum,
+s.intro as intro, 
+s.x1 as x1, 
+s.y1 as y1,
+s.x2 as x2, 
+s.y2 as y2, 
+s.hits as hits,
+s.slike as slike,
+g.gccategory as gccategory
+from shop s inner join goods_category g on s.scategory=g.gcnum
+       
+      where pid=#{pid}
+      ]]>
+   </select>
+   
+   <update id="deleteShop" parameterType="int">
+   <![CDATA[
+      update shop 
+   set 
+   sname='',
+   phone='',
+   simage='',
+   scategory='',
+   intro='',
+   score=0,
+   slike=0,
+   hits=0
+   where snum=#{snum}
+   ]]>
+   </update>
+   
+   <select id="selectShop2" parameterType="Shop" resultMap="ShopResultMap">
+   select * from shop where section=#{section} and sectionnum=#{sectionnum}
+   </select>
+</mapper>

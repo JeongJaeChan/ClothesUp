@@ -1,0 +1,172 @@
+@media screen and (min-width:601px) {
+   .accordion {
+   width: 450px;
+   border: 1px solid #ccc;
+   font-size : 20px;
+}
+
+.accordion ul {
+   margin: 0;
+   padding: 0;
+   list-style-type: none;
+}
+
+.accordion li {
+   margin: 0;
+   padding: 0;
+   list-style-type: none;
+}
+
+.accordion p {
+   margin: 0;
+   padding: 2px;
+}
+
+.accordion p {
+   cursor: pointer;
+}
+
+.accordion a {
+   display: block;
+   padding: 3px 0;
+   border-bottom: 1px sodid #ccc;
+   text-decoration: none;
+   background: #eee;
+}
+}
+@media screen and (max-width:600px) {
+   
+.accordion {
+   width: 100%;
+   border: 1px solid #ccc;
+   font-size : 14px;
+   
+}
+
+.accordion ul {
+   margin: 0;
+   padding: 0;
+   list-style-type: none;
+}
+
+.accordion li {
+   margin: 0;
+   padding: 0;
+   list-style-type: none;
+}
+
+.accordion p {
+   margin: 0;
+   padding: 2px;
+}
+
+.accordion p {
+   cursor: pointer;
+}
+
+.accordion a {
+   display: block;
+   padding: 3px 0;
+   border-bottom: 1px sodid #ccc;
+   text-decoration: none;
+   background: #eee;
+}
+}
+
+   .dropbtn {
+/*     background-color: #4CAF50; */
+/*     color: white; */
+/*      font-size: 16px;  */
+    border: none; 
+    cursor: pointer; 
+/* border-radius: 40px; */
+/*    background-color: white; */
+/*    -webkit-border-radius: 40px; */
+/*    -moz-border-radius: 40px; */
+/*    height: 40px; */
+/*     margin-top: 10px;  */
+/*     margin-right: 30px; */
+/*    border-style: none; */
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+/*     background-color: #3e8e41; */
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+   margin-top : 1%;
+  display: none; 
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding : 15px 0;
+    border: 1px solid #cccaca;
+   -moz-border-radius: 17px;
+   -webkit-border-radius: 17px;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black; 
+    font-size : 15px;
+    padding: 5px 16px; 
+    text-decoration: none; 
+    display: block; 
+}
+
+/* Change color of dropdown links on hover */
+ .dropdown-content a:hover {background-color: #f1f1f1} 
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;} 
+
+.dropLine{
+   margin: 5px 10px;
+/*    border-color: #cccaca; */
+}
+
+.dropMenu{
+   cursor: pointer;
+}
+
+#naver_id_login{
+    margin-bottom: 100px;
+   margin-left: 5%;
+   position: absolute;
+}
+
+.loginMember{
+   color:black;
+   padding-left :10px;
+   padding-top : 5px;
+   
+}
+
+._4z_d {
+    height: 440px;
+    width: 1400px;
+}
+.pluginFontHelvetica, .pluginFontHelvetica button, .pluginFontHelvetica input, .pluginFontHelvetica label, .pluginFontHelvetica select, .pluginFontHelvetica td, .pluginFontHelvetica textarea {
+    font-family: helvetica, arial, sans-serif;
+    width: 300px;
+}
+._51mz {
+   width:200px;
+}
+.facebook {
+  width:300px;
+/*   heigth:100px; */
+  margin-left: 150px;
+  position:absolute;
+/*   margin-bottom: 100px; */
+    margin-bottom: 50px;
+}
